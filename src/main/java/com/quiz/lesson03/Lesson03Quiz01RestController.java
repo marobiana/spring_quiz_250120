@@ -1,5 +1,7 @@
 package com.quiz.lesson03;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,4 +24,20 @@ public class Lesson03Quiz01RestController {
 		
 		return realEsateBO.getRealEstateById(id);
 	}
+	
+	// http://localhost:8080/lesson03/quiz01/2?rent_price=90
+	@RequestMapping("/2")
+	public List<RealEstate> quiz01_2(
+			@RequestParam("rent_price") int rentPrice) {
+		
+		return realEsateBO.getRealEstateListByRentPrice(rentPrice);
+	}
 }
+
+
+
+
+
+
+
+
