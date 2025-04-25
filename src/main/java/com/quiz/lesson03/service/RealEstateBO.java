@@ -29,6 +29,20 @@ public class RealEstateBO {
 	public List<RealEstate> getRealEstateListByAreaPrice(int area, int price) {
 		return realEstateMapper.selectRealEstateListByAreaPrice(area, price);
 	}
+	
+	public int addRealEstate(RealEstate realEstate) {
+		return realEstateMapper.insertRealEstate(realEstate);
+	}
+	
+//	addRealEstateAsField(
+//			realtorId, "썅떼빌리버 오피스텔 814호", 45, "월세",
+//			100000, 120);
+	public int addRealEstateAsField(int realtorId2,
+			String address2, int area2, String type2,
+			int price2, Integer rentPrice2) {
+		
+		return realEstateMapper.insertRealEstateAsField(realtorId2, address2, area2, type2, price2, rentPrice2);
+	}
 }
 
 

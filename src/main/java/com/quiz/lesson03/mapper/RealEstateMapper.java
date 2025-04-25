@@ -26,6 +26,18 @@ public interface RealEstateMapper {
 			// @Param 어노테이션을 붙이면 하나의 Map이 된다.
 			@Param("area1") int area11111, 
 			@Param("price1") int price222222);
+	
+	// input: RealEstate
+	// output: int(성공한 행 개수)
+	public int insertRealEstate(RealEstate realEstate);
+	
+	public int insertRealEstateAsField(
+			@Param("realtorId") int realtorId1,
+			@Param("address") String address1, 
+			@Param("area") int area1, 
+			@Param("type") String type1,
+			@Param("price") int price1, 
+			@Param("rentPrice") Integer rentPrice1);
 }
 
 
