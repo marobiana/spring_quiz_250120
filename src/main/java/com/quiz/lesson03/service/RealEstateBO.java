@@ -1,6 +1,8 @@
 package com.quiz.lesson03.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,10 @@ public class RealEstateBO {
 	
 	public List<RealEstate> getRealEstateListByRentPrice(int rentPrice) {
 		return realEstateMapper.selectRealEstateListByRentPrice(rentPrice);
+	}
+	
+	public List<RealEstate> getRealEstateListByAreaPrice(int area, int price) {
+		return realEstateMapper.selectRealEstateListByAreaPrice(area, price);
 	}
 }
 
