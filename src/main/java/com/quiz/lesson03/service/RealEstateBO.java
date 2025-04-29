@@ -52,6 +52,10 @@ public class RealEstateBO {
 		
 		return realEstateMapper.updateRealEstateById(id2222, type222, price222);
 	}
+	
+	public int deleteRealEstateById(int id) {
+		return realEstateMapper.deleteRealEstateById(id);
+	}
 }
 
 
