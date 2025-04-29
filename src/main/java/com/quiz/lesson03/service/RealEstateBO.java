@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,14 @@ public class RealEstateBO {
 			int price2, Integer rentPrice2) {
 		
 		return realEstateMapper.insertRealEstateAsField(realtorId2, address2, area2, type2, price2, rentPrice2);
+	}
+	
+	public int updateRealEstateById(
+			int id2222, 
+			String type222, 
+			int price222) {
+		
+		return realEstateMapper.updateRealEstateById(id2222, type222, price222);
 	}
 }
 
