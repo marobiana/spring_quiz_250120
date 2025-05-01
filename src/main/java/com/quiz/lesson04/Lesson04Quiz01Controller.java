@@ -40,10 +40,18 @@ public class Lesson04Quiz01Controller {
 	
 	// 최근 가입자 한명 정보 화면
 	// /lesson04/quiz01/seller-info-view
+	// /lesson04/quiz01/seller-info-view?id=3
 	@GetMapping("/seller-info-view")
-	public String sellerInfoView(Model model) {
+	public String sellerInfoView(
+			@RequestParam(value = "id", required = false) Integer id,
+			Model model) {
 		// db select
-		Seller seller = sellerBO.getLatestSeller();
+		Seller seller = null;
+		if (id == null) { // 최신가입자
+			seller = sellerBO.getLatestSeller();
+		} else { // id에 해당하는 사용자
+			seller = sellerBO.getSellerById(id);
+		}
 		
 		// model에 담기
 		model.addAttribute("seller", seller);
