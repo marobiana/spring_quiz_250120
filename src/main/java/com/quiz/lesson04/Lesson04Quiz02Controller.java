@@ -1,16 +1,21 @@
 package com.quiz.lesson04;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quiz.lesson04.domain.Realtor;
+import com.quiz.lesson04.service.RealtorBO;
 
 @RequestMapping("/lesson04/quiz02")
 @Controller
 public class Lesson04Quiz02Controller {
+	@Autowired
+	private RealtorBO realtorBO;
 
 	// 추가 화면 /lesson04/quiz02/add-realtor-view
 	@GetMapping("/add-realtor-view")
@@ -22,14 +27,17 @@ public class Lesson04Quiz02Controller {
 	// /lesson04/quiz02/add-realtor
 	@PostMapping("/add-realtor")
 	public String addRealtor(
-			@ModelAttribute Realtor realtor) {
+			@ModelAttribute Realtor realtor,
+			Model model) {
 		
 		// db insert => id가 mybatis를 통해 realtor로 들어옴
-		
+		realtorBO.addRealtor(realtor);
 		
 		// db select by id => 방금 추가된 공인중개사
+		realtor = realtorBO.getRealtorById(realtor.getId());
 		
 		// model에 담기
+		model.addAttribute("realtor", realtor);
 		
 		// 화면으로 이동
 		return "lesson04/afterAddRealtor";
