@@ -10,9 +10,27 @@
 </head>
 <body>
 	<div class="container">
-		<h1>즐겨찾기 추가</h1>
+		<h1>즐겨찾기 목록</h1>
 		
-		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>이름</th>
+					<th>주소</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bookmark : ${bookmarkList}">
+					<td th:text="${bookmark.id}"></td>
+					<td th:text="${bookmark.name}"></td>
+					<td><a th:href="${bookmark.url}" th:text="${bookmark.url}">adfjadsfklj</a></td>
+				</tr>	
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
+
+
+

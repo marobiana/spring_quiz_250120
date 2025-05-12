@@ -10,24 +10,73 @@
 </head>
 <body>
 	<div class="container">
-		<h1>즐겨찾기 목록</h1>
+		<h1>즐겨찾기 추가</h1>
 		
-		<table class="table text-center">
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>제목</th>
-					<th>주소</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="form-group">
+			<label for="name">제목</label>
+			<input type="text" id="name" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="url">URL 주소</label>
+			<input type="text" id="url" class="form-control">
+		</div>
+		
+		<button type="button" id="addBtn" class="btn btn-success btn-block">추가</button>
 	</div>
+	
+	<script>
+		$(function() {
+			// 추가 버튼
+			$("#addBtn").on("click", function() {
+				let name = $("#name").val().trim();
+				let url = $("#url").val().trim();
+				
+				if (name == "") {
+					alert("사이트명을 입력하세요");
+					return;
+				}
+				
+				if (!url) {
+					alert("주소를 입력하세요");
+					return;
+				}
+				
+				// http 또는 https 프로토콜까지 모두 입력되었는지
+				// http도 아니고 https도 아니면 alert
+				if (url.startsWith("http://") == false 
+						&& url.startsWith("https://") == false) {
+					alert("주소 형식이 잘못되었습니다");
+					return;
+				}
+				
+				console.log(name);
+				console.log(url);
+				
+				//alert("추가");
+				// AJAX 통신
+				$.ajax({
+					// request
+					type:"post"
+					, url:"/lesson06/add-bookmark"
+					, data:{"name":name, "url":url}
+					
+					// response - callback 함수
+					, success:function(data) { // data:응답 String
+						alert(data);
+					}
+					, error:function(error) {
+						alert("추가하는데 실패했습니다.");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
