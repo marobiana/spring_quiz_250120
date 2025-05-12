@@ -61,8 +61,14 @@
 					, data:{"name":name, "url":url}
 					
 					// response - callback 함수
-					, success:function(data) { // data:응답 String
-						alert(data);
+					// "{\"code\":200, \"result\":\"성공\"}"
+					, success:function(data) { // data:응답 JSON String, jquery ajax함수가 parsing함 => dictionary 
+						//alert(data.code);
+						//alert(data.result);
+						if (data.code == 200) {
+							// 목록 화면으로 이동(GET)
+							location.href = "/lesson06/bookmark-list-view";
+						}
 					}
 					, error:function(error) {
 						alert("추가하는데 실패했습니다.");

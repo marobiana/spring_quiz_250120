@@ -19,4 +19,15 @@ public class BookmarkBO {
 	public List<Bookmark> getBookmarkList() {
 		return bookmarkMapper.selectBookmarkList();
 	}
+	
+	// input: name, url
+	// output: X
+	public void addBookmark(String name, String url) {
+		bookmarkMapper.insertBookmark(name, url);
+	}
 }
+
+
+
+
+
