@@ -59,6 +59,23 @@ public class Lesson06Controller {
 		
 		return result;
 	}
+	
+	// AJAX 요청 - URL 중복확인
+	@ResponseBody
+	@PostMapping("/is-duplicate-url")
+	public Map<String, Object> isDuplicateUrl(
+			@RequestParam("url") String url) {
+		
+		// db select
+		boolean isDuplicate = bookmarkBO.isDuplicateUrl(url);
+		
+		// 응답값 JSON string
+		Map<String, Object> result = new HashMap<>();
+		// {"code":200, "is_duplicate":true} => 중복
+		result.put("code", 200);
+		result.put("is_duplicate", isDuplicate);
+		return result;
+	}
 }
 
 
