@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,6 +75,22 @@ public class Lesson06Controller {
 		// {"code":200, "is_duplicate":true} => 중복
 		result.put("code", 200);
 		result.put("is_duplicate", isDuplicate);
+		return result;
+	}
+	
+	// 삭제 API
+	// AJAX 요청
+	@ResponseBody
+	@DeleteMapping("/delete-bookmark")
+	public Map<String, Object> deleteBookmark(
+			@RequestParam("id") int id) {
+		
+		// delete db
+		bookmarkBO.deleteBookmarkById(id);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");
 		return result;
 	}
 }

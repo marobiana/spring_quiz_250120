@@ -38,6 +38,10 @@ public class BookmarkBO {
 //		return true;
 		return bookmarkList.isEmpty() ? false : true;
 	}
+	
+	public void deleteBookmarkById(int id) {
+		bookmarkMapper.deleteBookmarkById(id);
+	}
 }
 
 
