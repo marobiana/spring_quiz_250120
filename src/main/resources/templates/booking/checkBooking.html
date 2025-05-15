@@ -64,5 +64,53 @@
 	        </small>
 	    </footer>
 	</div>
+	
+	<script>
+		$(function() {
+			// 조회 버튼 클릭
+			$("#checkBookingBtn").on("click", function() {
+				let name = $("#name").val().trim();
+				let phoneNumber = $("#phoneNumber").val().trim();
+				
+				if (name == "") {
+					alert("이름을 입력하세요.");
+					return;
+				}
+				
+				if (!phoneNumber) {
+					alert("전화번호를 입력하세요.");
+					return;
+				}
+				
+				//alert("조회");
+				$.ajax({
+					type:"post"
+					, url:"/booking/check-booking"
+					, data:{"name":name, "phoneNumber":phoneNumber}
+					, success:function(data) {
+						if (data.code == 200) {
+							// 예약 내역 있음
+							// {"code":200, "result":{"id":3, "name":"신보람"...}}
+							alert("이름:" + data.result.name 
+									+ "\n날짜:" + data.result.date
+									+ "\n일수:" + data.result.day
+									+ "\n인원:" + data.result.headcount
+									+ "\n상태:" + data.result.state);
+						} else if (data.code == 400) {
+							// 예약 내역 없음
+							alert(data.error_message);
+						}
+					}
+					, error:function(error) {
+						alert("조회하는데 실패했습니다.");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
+
+
+
+

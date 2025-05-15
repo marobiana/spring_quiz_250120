@@ -78,6 +78,7 @@ public class BookingController {
 			@RequestParam("phoneNumber") String phoneNumber) {
 		
 		// db insert
+		bookingBO.addBooking(name, date, day, headcount, phoneNumber);
 		
 		// 응답값
 		Map<String, Object> result = new HashMap<>();
@@ -91,4 +92,33 @@ public class BookingController {
 	public String checkBookingView() {
 		return "booking/checkBooking";
 	}
+	
+	// AJAX 요청 - 예약 조회
+	@ResponseBody
+	@PostMapping("/check-booking")
+	public Map<String, Object> checkBooking(
+			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber) {
+		
+		// db select - 중복일 수 있지만 최근 1개만 가져옴
+		Booking booking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber); 
+		
+		// view가 없으므로 model도 없다.
+		// 응답 JSON
+		// {"code":200, "result":{"id":3, "name":"신보람"...}}
+		Map<String, Object> result = new HashMap<>();
+		if (booking == null) {
+			// {"code":400, "error_message":"예약 내역이 없습니다."}
+			result.put("code", 400);
+			result.put("error_message", "예약 내역이 없습니다.");
+		} else {
+			result.put("code", 200);
+			result.put("result", booking);
+		}
+		return result;
+	}
 }
+
+
+
+
