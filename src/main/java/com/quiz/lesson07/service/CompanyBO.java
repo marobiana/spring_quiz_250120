@@ -24,6 +24,24 @@ public class CompanyBO {
 				.headcount(headcount)
 				.build());
 	}
+	
+	public CompanyEntity updateCompanyById(
+			int id, String scale, int headcount) {
+		
+		// 기존 데이터 가져옴
+		CompanyEntity company = companyRepository.findById(id).orElse(null);
+		
+		// 기존 데이터 있을 때만 업데이트
+		if (company != null) {
+			// save(update) 후 다시 가져온 데이터를 꼭 저장
+			company = companyRepository.save(company.toBuilder()
+					.scale(scale)
+					.headcount(headcount)
+					.build());
+		}
+		
+		return company;
+	}
 }
 
 

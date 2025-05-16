@@ -34,6 +34,13 @@ public class Lesson07Quiz01RestController {
 //		사원수 : 6834명
 		return companyBO.addCompany("버블팡", "여신 금융업", "대기업", 6834);
 	}
+	
+	// /lesson07/quiz01/update
+	@GetMapping("/update")
+	public CompanyEntity update() {
+		// id가 8번인   중소기업, 34명
+		return companyBO.updateCompanyById(8, "중소기업", 34);
+	}
 }
 
 

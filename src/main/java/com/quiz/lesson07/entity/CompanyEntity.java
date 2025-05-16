@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder // setter 대용
+@Builder(toBuilder = true) // setter 대용, toBuilder=true 필드값 수정 허용
 @Getter
 @Table(name = "company")
 @Entity
