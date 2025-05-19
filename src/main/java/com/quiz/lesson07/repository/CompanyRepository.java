@@ -8,4 +8,5 @@ public interface CompanyRepository extends JpaRepository<CompanyEntity, Integer>
 	// Spring Data JPA
 	//public CompanyEntity save(엔티티객체);
 	//public Optional<CompanyEntity> findById(id);
+	//public void delete(엔티티객체); 
 }

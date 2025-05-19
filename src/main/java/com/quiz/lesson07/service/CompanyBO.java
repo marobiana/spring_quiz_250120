@@ -1,5 +1,7 @@
 package com.quiz.lesson07.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,13 @@ public class CompanyBO {
 		}
 		
 		return company;
+	}
+	
+	// input: id
+	// output: X
+	public void deleteCompanyById(int id) {
+		Optional<CompanyEntity> companyOptional = companyRepository.findById(id);
+		companyOptional.ifPresent(c -> companyRepository.delete(c));
 	}
 }
 

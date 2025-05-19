@@ -41,6 +41,13 @@ public class Lesson07Quiz01RestController {
 		// id가 8번인   중소기업, 34명
 		return companyBO.updateCompanyById(8, "중소기업", 34);
 	}
+	
+	// /lesson07/quiz01/delete
+	@GetMapping("/delete")
+	public String delete() {
+		companyBO.deleteCompanyById(8);
+		return "삭제 성공!";
+	}
 }
 
 
