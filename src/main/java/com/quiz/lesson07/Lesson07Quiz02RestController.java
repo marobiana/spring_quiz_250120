@@ -1,5 +1,6 @@
 package com.quiz.lesson07;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,12 @@ public class Lesson07Quiz02RestController {
 	public List<RecruitEntity> quiz02_6() {
 		// 성남시 분당구가 지역인 연봉 7000 이상 8500 이하인 공고를 조회
 		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+	}
+	
+	@GetMapping("/7")
+	public List<RecruitEntity> quiz02_7() {
+		// 마감일이 2026-04-10 이후이고 연봉이 8100 이상인 정규직 공고를 연봉 내림차순
+		return recruitRepository.selectRecruitEntityList(LocalDate.of(2026, 4, 10), 8100, "정규직");
 	}
 }
 
